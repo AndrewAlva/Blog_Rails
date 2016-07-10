@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@andrewalva94">
+  <meta name="twitter:creator" content="@andrewalva94">
+
+  <meta property="og:url" content="<%= request.original_url  %>">
+  <meta name="author" content="Andrew Alva">
+  <meta name='title' content='<%= full_title(yield(:title)) %>'>
+  <meta name='og:title' content='<%= full_title(yield(:title)) %>'>
+  <meta name='twitter:title' content='<%= full_title(yield(:title)) %>'>
+  <meta name='image' content='<%= image_meta(yield(:image)) %>'>
+  <meta name='og:image' content='<%= image_meta(yield(:image)) %>'>
+  <meta name='twitter:image' content='<%= image_meta(yield(:image)) %>'>
+  <meta name='description' content='<%= description_meta(yield(:description)) %>'>
+  <meta name='og:description' content='<%= description_meta(yield(:description)) %>'>
+  <meta name='twitter:description' content='<%= description_meta(yield(:description)) %>'>
+  
+  <%= csrf_meta_tags %>
+</head>
+
+
+<body class="body-<%= params[:action] %>">
+
+<nav>
+	<ul>
+		<li><%= link_to "Home", root_path %></li>
+		<li><%= link_to "About", "/about" %></li>
+		<li><%= link_to "Contact", "/contact" %></li>
+    <!-- ALTERNATE SYNTAX
+     link_to "Contact", controller:'statics', :action => 'contact'
+     -->
+		<li><%= link_to "Blog", "/blog" %> </li>
+		<li> <%= link_to "Nuevo Post", new_post_path %> </li>
+	</ul>
+</nav>
+
+<section id="section-<%= params[:action] %>" class="section section-<%= params[:controller] %>">
+	
+	<%= yield %>
+
+</section>
+
+</body>
+</html>
